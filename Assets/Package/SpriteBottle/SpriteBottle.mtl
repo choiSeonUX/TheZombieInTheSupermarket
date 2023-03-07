@@ -1,0 +1,37 @@
+# MTL written from D:\PROJECT 3D Asset Store\Merk\Sprite\SpriteBottle.obj
+newmtl Glass
+Kd 0.0142131 0.136278 0
+Ns 256
+d 0.3
+illum 2
+Ka 0 0 0
+Ks 0.2 0.2 0.2
+newmtl Green
+Kd 0.00490959 0.164038 0
+Ns 256
+d 0.215
+illum 2
+Ka 0 0 0
+Ks 0 0 0
+newmtl GreenEmpty
+Kd 0.123006 0.492114 0
+Ns 256
+d 0.5
+illum 2
+Ka 0 0 0
+Ks 0.2 0.2 0.2
+newmtl Logo
+Kd 0.0142131 0.136278 0
+Ns 256
+d 1
+illum 2
+Ka 0 0 0
+Ks 0.2 0.2 0.2
+map_Kd D:\PROJECT 3D Asset Store\Merk\Sprite\spritetex.jpg
+newmtl Tube
+Kd 0.179778 0.719243 0
+Ns 256
+d 1
+illum 2
+Ka 0 0 0
+Ks 0.2 0.2 0.2

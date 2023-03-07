@@ -30,9 +30,11 @@ public class PlayerController : MonoBehaviour
     private Camera theCamera;
 
     private Rigidbody rigidbody;
+    private Stamina stamina; 
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        stamina = GetComponent<Stamina>(); 
         applySpeed = walkSpeed; 
 
     }
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour
         }
         if(Input.GetKeyUp(KeyCode.LeftShift))
         {
-            RunngCancel();
+            RunningCancel();
         }
 
     }
@@ -61,14 +63,21 @@ public class PlayerController : MonoBehaviour
     private void Running()
     {
         isRun = true;
-        applySpeed = runSpeed; 
+        applySpeed = runSpeed;
+        stamina.DecreaseStamina(2); 
+
+        if(stamina.currentSp == 0)
+        {
+            RunningCancel(); 
+        }
     }
 
-    private void RunngCancel()
+    private void RunningCancel()
     {
         isRun = false;
-        applySpeed = walkSpeed; 
+        applySpeed = walkSpeed;
     }
+
     private void Move()
     {
         float moveDirX = Input.GetAxisRaw("Horizontal");
