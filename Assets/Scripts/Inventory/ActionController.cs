@@ -17,6 +17,9 @@ public class ActionController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI actionText;
 
+    [SerializeField]
+    private InventoryCheck inventoryCheck;  
+
     public GameObject target { get; set; }
 
     void Update()
@@ -38,11 +41,7 @@ public class ActionController : MonoBehaviour
         {
             if (hitInfo.transform != null)
             {
-                ItemPickUp itemPickUp = hitInfo.transform.GetComponent<ItemPickUp>();
-                Item item = itemPickUp.item;
-                Debug.Log(item.itemName + " »πµÊ«ﬂΩ¿¥œ¥Ÿ");
-
-
+                inventoryCheck.Acquireitem(hitInfo.transform.GetComponent<ItemPickUp>().item);
                 Destroy(hitInfo.transform.gameObject);
                 InfoDisappear();
             }
@@ -51,24 +50,20 @@ public class ActionController : MonoBehaviour
 
     private void CheckItem()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, range))
+        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, range, 1<<LayerMask.NameToLayer("Item")))
         {
-            ItemPickUp itemPickUp = hitInfo.transform.GetComponent<ItemPickUp>();
-            if (itemPickUp != null && (itemPickUp.item.itemType == Item.ItemType.EscapeItem || itemPickUp.item.itemType == Item.ItemType.StaminaItem))
-            {
-                ItemInfoAppear(itemPickUp.item.itemName);
-            }
+                ItemInfoAppear();
         }
         else
 
             InfoDisappear();
     }
 
-    private void ItemInfoAppear(string itemName)
+    private void ItemInfoAppear()
     {
         pickupActivated = true;
         actionText.gameObject.SetActive(true);
-        actionText.text = itemName + " »πµÊ " + "<color=yellow>" + "(E)" + "</color>";
+        actionText.text = hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " »πµÊ " + "<color=yellow>" + "(E)" + "</color>";
     }
     private void InfoDisappear()
     {

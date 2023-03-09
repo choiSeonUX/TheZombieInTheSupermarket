@@ -52,31 +52,6 @@ public class InventoryCheck : MonoBehaviour
 
     public void Acquireitem(Item _item, int _count = 1)
     {
-        if (_item.itemType == Item.ItemType.EscapeItem)
-        {
-            for (int i = 0; i < slots.Length; i++)
-            {
-                if (slots[i].item != null)
-                {
-                    if (slots[i].item.itemName == _item.itemName)
-                    {
-                        slots[i].SetSlotCount(_count);
-                        return;
-                    }
-                }
-            }
-        }
-
-        if (_item.itemType == Item.ItemType.StaminaItem)
-        {
-            Stamina playerStamina = GetComponent<Stamina>();
-            if (playerStamina != null)
-            {
-                playerStamina.GetPlusCurrentSP(StaminaItemgage);
-            }
-            return;
-        }
-
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].item == null)
