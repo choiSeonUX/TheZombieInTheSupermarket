@@ -11,6 +11,8 @@ public class InventoryCheck : MonoBehaviour
     private GameObject go_InventoryBase;
     [SerializeField]
     private GameObject go_SlotsParent;
+    [SerializeField]
+    private int StaminaItemgage = 3; 
 
     // ½½·Ôµé.
     private Slot[] slots;
@@ -50,7 +52,7 @@ public class InventoryCheck : MonoBehaviour
 
     public void Acquireitem(Item _item, int _count = 1)
     {
-        if (Item.ItemType.EscapeItem == _item.itemType)
+        if (_item.itemType == Item.ItemType.EscapeItem)
         {
             for (int i = 0; i < slots.Length; i++)
             {
@@ -65,6 +67,16 @@ public class InventoryCheck : MonoBehaviour
             }
         }
 
+        if (_item.itemType == Item.ItemType.StaminaItem)
+        {
+            Stamina playerStamina = GetComponent<Stamina>();
+            if (playerStamina != null)
+            {
+                playerStamina.GetPlusCurrentSP(StaminaItemgage);
+            }
+            return;
+        }
+
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].item == null)
@@ -74,6 +86,4 @@ public class InventoryCheck : MonoBehaviour
             }
         }
     }
-
-
 }

@@ -53,7 +53,7 @@ public class Stamina : MonoBehaviour
             currentSp += spIncreaseSpeed;
         }
     }
-    public void GetPlusCurrentHP(int Amount)
+    public void GetPlusCurrentSP(int Amount)
     {
         if (currentSp < sp)
         {

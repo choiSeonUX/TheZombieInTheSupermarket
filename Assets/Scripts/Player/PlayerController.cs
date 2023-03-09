@@ -13,10 +13,6 @@ public class PlayerController : MonoBehaviour
     // 상태변수 
     private bool isRun = false; 
 
-
-
-
-
     // 카메라 민감도 
     [SerializeField]
     private float lookSensitivity;
@@ -49,7 +45,7 @@ public class PlayerController : MonoBehaviour
     }
     private void TryRun()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
         {
             Running();
         }

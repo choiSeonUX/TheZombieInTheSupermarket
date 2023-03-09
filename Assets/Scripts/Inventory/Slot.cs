@@ -22,6 +22,7 @@ public class Slot : MonoBehaviour
     {
         item = _item;
         itemImage.sprite = item.itemImage;
+        SetColor(1);
     }
 
     public void SetSlotCount(int count)
