@@ -41,7 +41,7 @@ public class ActionController : MonoBehaviour
         {
             if (hitInfo.transform != null)
             {
-                inventoryCheck.Acquireitem(hitInfo.transform.GetComponent<ItemPickUp>().item);
+                inventoryCheck.AcquireItem(hitInfo.transform.GetComponent<ItemPickUp>().item);
                 Destroy(hitInfo.transform.gameObject);
                 InfoDisappear();
             }

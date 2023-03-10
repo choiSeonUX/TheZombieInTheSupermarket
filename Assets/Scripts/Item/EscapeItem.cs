@@ -14,7 +14,7 @@ public class EscapeItem : ItemCollecter
         {
             if (item.itemType == Item.ItemType.EscapeItem)
             {
-                inventory.Acquireitem(item);
+                inventory.AcquireItem(item);
             }
         }
     }

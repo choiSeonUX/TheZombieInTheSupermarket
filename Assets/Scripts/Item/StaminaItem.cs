@@ -1,21 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class StaminaItem : MonoBehaviour
+public class StaminaItem : ItemCollecter
 {
     [SerializeField]
-    private int staminaAmount;
-    private void OnTriggerEnter(Collider other)
+    private Stamina stamina; 
+    [SerializeField]
+    private int staminaAmount = 50;
+    [SerializeField]
+    private Item item;
+
+    public override void Use(GameObject target)
     {
-        if (other.CompareTag("Player"))
+        stamina = target.GetComponent<Stamina>(); 
+        if (stamina != null)
         {
-            Stamina playerStamina = other.GetComponent<Stamina>();
-            if (playerStamina != null)
+            if(item.itemType == Item.ItemType.StaminaItem)
             {
-                playerStamina.GetPlusCurrentSP(staminaAmount);
-                Destroy(gameObject);
+                stamina.GetPlusCurrentSP(staminaAmount);
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Stamina_Item"))
+        {
+            Use(other.transform.gameObject); 
+        }
+    }
+
+
 }

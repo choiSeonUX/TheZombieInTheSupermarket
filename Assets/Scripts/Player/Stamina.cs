@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class Stamina : MonoBehaviour
 {
     [SerializeField]
-    private int sp;
-    public int currentSp { get; set; }
+    private float sp;
+    public float currentSp { get; set; }
 
     [SerializeField]
-    private int spIncreaseSpeed;
+    private float spIncreaseSpeed;
 
     [SerializeField]
-    private int spRechargeTime;
+    private float spRechargeTime;
     private int currentSpRechargeTime;
 
     private bool spUsed;
