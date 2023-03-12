@@ -29,4 +29,12 @@ public class Slot : MonoBehaviour
         itemImage.sprite = null;
         SetColor(0);
     }
+
+    public int GetItemCount()
+    {
+        if (item == null)
+            return 0;
+
+        return 1;
+    }
 }

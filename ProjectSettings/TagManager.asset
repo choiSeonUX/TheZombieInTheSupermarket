@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Escape_Item
   - Stamina_Item
+  - AttackItem
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - Item
   - EscapeItem
-  - 
+  - Zombie
   - 
   - 
   - 

@@ -35,13 +35,16 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        CamreraRotation();
+        CharcaterRotation();
+    }
+
     private void Update()
     {
         TryRun();
         Move();
-        CamreraRotation();
-        CharcaterRotation(); 
-        
     }
     private void TryRun()
     {

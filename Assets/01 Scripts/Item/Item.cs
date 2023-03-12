@@ -14,11 +14,18 @@ public class Item : ScriptableObject
     public GameObject itemPrefab;
     [Header("아이템타입")]
     public ItemType itemType;
+    [Header("공격아이템 태그분류")]
+    public ItemTag itemTag;
 
     public enum ItemType
     {
         StaminaItem,
         EscapeItem
+    }
+    public enum ItemTag
+    {
+        none,
+        AttackZombieItem
     }
 }
 

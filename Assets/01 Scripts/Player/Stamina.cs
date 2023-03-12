@@ -37,13 +37,10 @@ public class Stamina : MonoBehaviour
 
     private void SPRechargeTime()
     {
-        if (spUsed)
-        {
-            if (currentSpRechargeTime < spRechargeTime)
-                currentSpRechargeTime++;
-            else
-                spUsed = false;
-        }
+        if (spUsed && currentSpRechargeTime < spRechargeTime)
+            currentSpRechargeTime++;
+        else if (spUsed)
+            spUsed = false;
     }
 
     private void SPRecover()
@@ -53,13 +50,13 @@ public class Stamina : MonoBehaviour
             currentSp += spIncreaseSpeed;
         }
     }
-    public void GetPlusCurrentSP(int Amount)
+    public void IncreaseSP(int Amount)
     {
         if (currentSp < sp)
         {
             currentSp += Amount;
         }
-        else if (currentSp == sp || currentSp > sp)
+        else if (currentSp > sp)
         {
             currentSp = sp;
         }

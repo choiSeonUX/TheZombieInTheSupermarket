@@ -68,8 +68,23 @@ public class InventoryCheck : MonoBehaviour
                 --count;
             }
 
-            if (i >= slots.Length-1)
+            if (i >= slots.Length - 1)
                 break;
         }
+    }
+    
+    // AttackZombieItem 태그 아이템 반환 
+    public int GetItemCountWithTag()
+    {
+        int count = 0;
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item != null && slots[i].item.itemTag == Item.ItemTag.AttackZombieItem)
+            {
+                count += slots[i].GetItemCount();
+            }
+        }
+        return count;
     }
 }

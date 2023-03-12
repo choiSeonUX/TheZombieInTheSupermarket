@@ -11,11 +11,9 @@ public class EscapeItem : ItemCollecter
         InventoryCheck inventory = target.GetComponent<InventoryCheck>();
 
         if (inventory != null)
-        {
-            if (item.itemType == Item.ItemType.EscapeItem)
-            {
+        {        
                 inventory.AcquireItem(item);
-            }
+            
         }
     }
 }

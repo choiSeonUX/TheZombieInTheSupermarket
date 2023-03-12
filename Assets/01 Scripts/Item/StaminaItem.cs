@@ -15,10 +15,8 @@ public class StaminaItem : ItemCollecter
         stamina = target.GetComponent<Stamina>(); 
         if (stamina != null)
         {
-            if(item.itemType == Item.ItemType.StaminaItem)
-            {
-                stamina.GetPlusCurrentSP(staminaAmount);
-            }
+                stamina.IncreaseSP(staminaAmount);
+                gameObject.SetActive(false); 
         }
     }
 
