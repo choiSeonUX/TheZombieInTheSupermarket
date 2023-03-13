@@ -15,12 +15,10 @@ public class ZombieState : MonoBehaviour
     private float runSpeed = 1f;
     [SerializeField]
     private Transform playerTransform;
-    [SerializeField]
-    private float stoppingDistance = 0.5f; 
 
     private State currentState = State.Walking;
     private Animator animator;
-    private NavMeshAgent navMeshAgent; 
+    private NavMeshAgent navMeshAgent;
 
     public enum State
     {
@@ -36,7 +34,6 @@ public class ZombieState : MonoBehaviour
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.speed = moveSpeed;
-        navMeshAgent.stoppingDistance = stoppingDistance;
     }
 
     private void Update()
@@ -59,51 +56,50 @@ public class ZombieState : MonoBehaviour
 
     void Walking()
     {
-        if (Vector3.Distance(transform.position, playerTransform.position) <= runDistance)
+         float transformDifference = Vector3.Distance(transform.position, playerTransform.position);
+        if (transformDifference <= runDistance)
         {
             currentState = State.Running;
-            animator.SetBool("IsRunning", true);
-            animator.SetBool("IsWalking", false);
+            animator.SetBool("IsTracking", true);
         }
         else
         {
             navMeshAgent.SetDestination(playerTransform.position);
-            animator.SetBool("IsWalking", true);
-            animator.SetBool("IsRunning", false);
+            animator.SetBool("IsTracking", false);
+
         }
     }
 
     void Running()
     {
-        if (Vector3.Distance(transform.position, playerTransform.position) >= attackDistance)
+        float transformDifference = Vector3.Distance(transform.position, playerTransform.position);
+        if (transformDifference <= attackDistance)
         {
             currentState = State.Attacking;
-            animator.SetBool("IsRunning", false);
-            animator.SetBool("IsWalking", false);
-            animator.SetBool("IsAttacking", true);
+            transform.LookAt(playerTransform);
+            animator.SetTrigger("Attack");
+            
         }
-        else if (Vector3.Distance(transform.position, playerTransform.position) >= runDistance)
-        {
-            currentState = State.Walking;
-            animator.SetBool("IsRunning", false);
-            animator.SetBool("IsWalking", true);
+        else if (transformDifference <= runDistance) 
+        { 
+            transform.LookAt(playerTransform);
         }
-        else
+        else 
         {
             navMeshAgent.SetDestination(playerTransform.position);
-            animator.SetBool("IsRunning", true);
-            animator.SetBool("IsWalking", false);
+            transform.LookAt(playerTransform);
+            animator.SetBool("IsTracking", false);
         }
     }
 
     void Attacking()
     {
-        if (Vector3.Distance(transform.position, playerTransform.position) >= attackDistance)
+        float transformDifference = Vector3.Distance(transform.position, playerTransform.position);
+        if (transformDifference <= attackDistance)
         {
-            currentState = State.Running;
-            animator.SetBool("IsRunning", true);
-            animator.SetBool("IsAttacking", false);
-            animator.SetTrigger("StopAttack");
+            currentState = State.Attacking;
+            transform.LookAt(playerTransform);
+            animator.SetTrigger("Attack");
         }
     }
 }
